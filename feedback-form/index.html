@@ -4,58 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>课程反馈</title>
-<link rel="stylesheet" href="style.css">
+  <!-- 保持你确认过的路径：style.css 就在当前目录下 -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
     <h1>课程反馈</h1>
     <p>你的意见直接改进下一次授课</p >
   </header>
+
   <nav>
     <a href=" ">填写说明</a >
     <a href="#form">开始填写</a >
   </nav>
+
   <main>
     <section id="intro">
       <h2>填写说明</h2>
       <p>匿名收集，仅用于改进教学，两分钟填完。</p >
     </section>
+
     <section id="form">
       <h2>反馈表单</h2>
-      <p>（表单下一步填在这里）</p >
+
+      <form action="#" method="get">
+        <!-- 姓名 -->
+        <p>
+          <label for="name">姓名（可填昵称）</label><br>
+          <input type="text" id="name" name="name" placeholder="怎么称呼你" required>
+        </p >
+
+        <!-- 邮箱 -->
+        <p>
+          <label for="mail">邮箱</label><br>
+          <input type="email" id="mail" name="mail" placeholder="example@mail.com" required>
+        </p >
+
+        <!-- 评分 -->
+        <p>课程评分</p >
+        <p>
+          <label><input type="radio" name="score" value="5" checked> 很好</label>
+          <label><input type="radio" name="score" value="3"> 好</label>
+          <label><input type="radio" name="score" value="1"> 一般</label>
+        </p >
+
+        <!-- 主题 -->
+        <p>想深入的主题（可多选）</p >
+        <p>
+          <label><input type="checkbox" name="topic" value="layout"> 页面布局</label>
+          <label><input type="checkbox" name="topic" value="js"> JavaScript</label>
+          <label><input type="checkbox" name="topic" value="viz"> 数据可视化</label>
+        </p >
+
+        <!-- 具体建议（已修改：增加了字数统计功能） -->
+        <p>
+          <label for="advice">具体建议</label><br>
+          <!-- maxlength="200" 限制了最大长度 -->
+          <textarea id="advice" name="advice" rows="4" maxlength="200" placeholder="说点什么..."></textarea>
+          
+          <!-- 【新增部分】显示剩余字数的区域 -->
+          <div id="char-count" style="font-size: 12px; color: #666; margin-top: 5px; text-align: right;">
+            还可以输入 200 字
+          </div>
+        </p >
+
+        <!-- 提交按钮 -->
+        <p>
+          <button type="submit">提交反馈</button>
+        </p >
+      </form>
     </section>
   </main>
+
   <footer>
     <p>软件开发综合实践 · 课程演示案例</p >
   </footer>
+
+  <!-- 【新增部分】控制字数显示的脚本 -->
+  <script>
+    // 获取文本域和显示字数的元素
+    const textarea = document.getElementById('advice');
+    const countDisplay = document.getElementById('char-count');
+    const maxLen = 200; // 这里的数字要和上面 HTML 里的 maxlength 保持一致
+
+    // 监听输入事件
+    textarea.addEventListener('input', function() {
+      // 计算当前长度
+      const currentLen = this.value.length;
+      // 计算剩余长度
+      const remaining = maxLen - currentLen;
+
+      // 更新文字
+      countDisplay.textContent = `还可以输入 ${remaining} 字`;
+
+      // 如果剩余字数少于 20 个，变红提醒
+      if (remaining < 20) {
+        countDisplay.style.color = '#d9534f'; // 红色
+        countDisplay.style.fontWeight = 'bold';
+      } else {
+        countDisplay.style.color = '#666'; // 恢复灰色
+        countDisplay.style.fontWeight = 'normal';
+      }
+    });
+  </script>
+
 </body>
 </html>
-<form action="#" method="get">
-  <p>
-    <label for="name">姓名（可填昵称）</label>
-    <input type="text" id="name" name="name" placeholder="怎么称呼你" required>
-  </p >
-  <p>
-    <label for="mail">邮箱</label>
-    <input type="email" id="mail" name="mail" required>
-  </p >
-  <p>课程评分</p >
-  <p>
-    <label><input type="radio" name="score" value="5" checked> 很好</label>
-    <label><input type="radio" name="score" value="4"> 好</label>
-    <label><input type="radio" name="score" value="3"> 一般</label>
-  </p >
-  <p>想深入的主题（可多选）</p >
-  <p>
-    <label><input type="checkbox" name="topic" value="layout"> 页面布局</label>
-    <label><input type="checkbox" name="topic" value="js"> JavaScript</label>
-    <label><input type="checkbox" name="topic" value="chart"> 数据可视化</label>
-  </p >
-  <p>
-    <label for="advice">具体建议</label><br>
-    <textarea id="advice" name="advice" rows="4" maxlength="200" placeholder="说点什么"></textarea>
-  </p >
-  <p>
-    <button type="submit">提交反馈</button>
-  </p >
-</form>
