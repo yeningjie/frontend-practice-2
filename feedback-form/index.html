@@ -19,6 +19,25 @@
 
       <section id="form">
            <h2>反馈表单</h2>
+   <form action="#"method="post">
+   <label for="name">你的名字（选填）</label>
+   <input type="text" id="name" name="name" placeholder="匿名也可以">
+  <label for="rating">课程评分</label>
+  <select id="rating" name="rating">
+  <option value="5">非常满意</option>
+  <option value="4">满意</option>
+  <option value="3">一般</option>
+  <option value="2">不满意</option>
+  <option value="1">非常不满意</option>
+</select>
+
+<label for ="comment">你的建议</label>
+<textarea id="comment" 
+name="comment"rows="4"
+ placeholder="写下你的想法..."></textarea>
+
+<button type="submit">提交反馈</buttom>
+</form>
       </section>
 </main>
 
