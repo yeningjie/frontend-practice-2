@@ -47,6 +47,28 @@
         </section>
 
         <!-- 报名表单区（第3步会在这里加表单） -->
+<form id="signupForm" onsubmit="return handleSubmit(event)">
+                <label for="name">姓名：</label>
+                <input type="text" id="name" placeholder="请输入你的姓名" required>
+
+                <label for="club">选择社团：</label>
+                <select id="club" required>
+                    <option value="">-- 请选择 --</option>
+                    <option value="吉他社">🎸 吉他社</option>
+                    <option value="摄影社">📷 摄影社</option>
+                    <option value="编程社">💻 编程社</option>
+                </select>
+
+                <label for="reason">报名理由：</label>
+                <textarea id="reason" rows="4" placeholder="简单说说你为什么想加入..." required></textarea>
+
+                <button type="submit">提交报名</button>
+            </form>
+
+            <div id="result" style="display:none; margin-top:20px; padding:15px; background:#e8f5e9; border-radius:8px;">
+                <h3>✅ 报名成功！</h3>
+                <p id="resultText"></p >
+            </div>
         <section id="join">
             <h2>📝 在线报名表</h2>
             <!-- 待补充表单 -->
